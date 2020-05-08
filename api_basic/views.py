@@ -13,11 +13,19 @@ from rest_framework import status
 #for class based view
 from rest_framework.views import APIView
 
+#for authentication
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication, TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
+
 # Create your views here.
 
 class ArticleAPIView(APIView):
     
-    def get(self, reqest):
+    #authentication_classes = [SessionAuthentication, BasicAuthentication]
+    #authentication_classes = [TokenAuthentication]
+    #permission_classes = [IsAuthenticated]
+
+    def get(self, request):
         articles = Article.objects.all()
         serializer = ArticleSerializer(articles, many=True)
         return Response(serializer.data)
@@ -51,7 +59,7 @@ class ArticleDetails(APIView):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=201)
-        return Response(serializer.erros, status=status.HTTP_400_BAD_REQUEST)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request, id):
         article = self.get_object(id)
