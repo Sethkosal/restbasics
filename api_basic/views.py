@@ -21,9 +21,9 @@ from rest_framework.permissions import IsAuthenticated
 
 class ArticleAPIView(APIView):
     
-    #authentication_classes = [SessionAuthentication, BasicAuthentication]
+    authentication_classes = [SessionAuthentication, BasicAuthentication]
     #authentication_classes = [TokenAuthentication]
-    #permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
 
     def get(self, request):
         articles = Article.objects.all()
