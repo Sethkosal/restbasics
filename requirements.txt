@@ -1,5 +1,5 @@
 decorator==4.2.1
-Django==2.0.2
+Django==2.2.24
 django-filter==2.2.0
 djangorestframework==3.11.0
 ecdsa==0.13
